@@ -1,0 +1,13 @@
+require: rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 2.6
+  Exclude:
+    - 'node_modules/**/*'
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+Metrics/LineLength:
+  Max: 120
+Documentation:
+  Enabled: false
