@@ -38,7 +38,7 @@ class AttributesExtractor
   end
 
   def request_type
-    json['RequestType']
+    json['RequestType'].downcase
   end
 
   def response_due_date

@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 def test_json
-  file = File.read(Rails.root.join('spec/test.json'))
-  JSON.parse(file)
+  JSON.parse(raw_test_json)
+end
+
+def raw_test_json
+  File.read(Rails.root.join('spec/test.json'))
 end
