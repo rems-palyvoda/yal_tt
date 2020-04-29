@@ -16,23 +16,23 @@ ActiveRecord::Schema.define(version: 2020_04_28_121122) do
   enable_extension "plpgsql"
 
   create_table "excavators", force: :cascade do |t|
-    t.string "company_name"
-    t.string "address"
-    t.boolean "crew_on_site"
-    t.bigint "ticket_id"
+    t.string "company_name", null: false
+    t.string "address", null: false
+    t.boolean "crew_on_site", null: false
+    t.bigint "ticket_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["ticket_id"], name: "index_excavators_on_ticket_id", unique: true
   end
 
   create_table "tickets", force: :cascade do |t|
-    t.string "request_number"
-    t.string "sequence_number"
-    t.integer "request_type"
-    t.datetime "response_due_date"
-    t.string "primary_service_area"
+    t.string "request_number", null: false
+    t.string "sequence_number", null: false
+    t.integer "request_type", null: false
+    t.datetime "response_due_date", null: false
+    t.string "primary_service_area", null: false
     t.string "additional_service_area", array: true
-    t.string "digsite_info"
+    t.string "digsite_info", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

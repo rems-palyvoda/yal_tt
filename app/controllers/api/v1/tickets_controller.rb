@@ -13,7 +13,7 @@ module Api
           }, status: :created
         else
           render json: {
-            errors: [ticket.errors.messages, excavator.errors.messages]
+            errors: { ticket: ticket.errors.messages, excavator: excavator.errors.messages }
           }, status: :unprocessable_entity
         end
       end

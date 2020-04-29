@@ -9,21 +9,21 @@ class AttributesExtractor
 
   def ticket
     {
-        request_number: request_number,
-        sequence_number: sequence_number,
-        request_type: request_type,
-        response_due_date: response_due_date,
-        primary_service_area: primary_service_area,
-        additional_service_area: additional_service_area,
-        digsite_info: digsite_info
+      request_number: request_number,
+      sequence_number: sequence_number,
+      request_type: request_type,
+      response_due_date: response_due_date,
+      primary_service_area: primary_service_area,
+      additional_service_area: additional_service_area,
+      digsite_info: digsite_info
     }
   end
 
   def excavator
     {
-        company_name: company_name,
-        address: address,
-        crew_on_site: crew_on_site
+      company_name: company_name,
+      address: address,
+      crew_on_site: crew_on_site
     }
   end
 
