@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Ticket, type: :model do
+  it { should have_db_index(:request_number) }
+
   describe 'enums' do
     it { should define_enum_for(:request_type).with_values(%i[normal]) }
   end
@@ -22,9 +24,8 @@ RSpec.describe Ticket, type: :model do
     it { should validate_presence_of(:response_due_date) }
 
     it { should validate_presence_of(:primary_service_area) }
-    it { should allow_value("123ASD").for(:primary_service_area) }
-    it { should_not allow_value("foo!!").for(:primary_service_area) }
-
+    it { should allow_value('123ASD').for(:primary_service_area) }
+    it { should_not allow_value('foo!!').for(:primary_service_area) }
 
     it { should validate_presence_of(:additional_service_area) }
 

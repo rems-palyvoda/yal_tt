@@ -10,7 +10,6 @@ RSpec.describe Excavator, type: :model do
   end
 
   describe 'validations' do
-    it { should validate_presence_of(:ticket_id) }
     it { should validate_presence_of(:company_name) }
     it { should validate_presence_of(:address) }
     it { should validate_presence_of(:crew_on_site) }
