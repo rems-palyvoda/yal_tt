@@ -5,5 +5,5 @@ def test_json
 end
 
 def raw_test_json
-  File.read(Rails.root.join('spec/test.json'))
+  @raw_test_json ||= File.read(Rails.root.join('spec/test.json'))
 end

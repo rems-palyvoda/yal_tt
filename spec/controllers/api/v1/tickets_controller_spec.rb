@@ -25,17 +25,29 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
   context 'when present ticket' do
     before(:each) { post :create, body: json }
 
-    it 'responses with status created' do
-      post :create, body: json
-      expect(response).to have_http_status(:unprocessable_entity)
+    it_behaves_like 'ticket has not been created' do
+      let(:json) { raw_test_json }
     end
+  end
 
-    it 'creates new ticket' do
-      expect { post :create, body: json }.to change(Ticket, :count).by 0
+  context 'when empty post json' do
+    it_behaves_like 'ticket has not been created' do
+      let(:json) { '{}' }
     end
+  end
 
-    it 'creates new excavator' do
-      expect { post :create, body: json }.to change(Excavator, :count).by 0
+  context 'when json does not have needed keys' do
+    it_behaves_like 'ticket has not been created' do
+      let(:json) do
+        '{  "ContactCenter":"UPCA",
+                       "ReferenceRequestNumber":""}'
+      end
+    end
+  end
+
+  context 'when json has invalid values' do
+    it_behaves_like 'ticket has not been created' do
+      let(:json) { raw_test_json.gsub('ZZGL103', '-----') }
     end
   end
 end

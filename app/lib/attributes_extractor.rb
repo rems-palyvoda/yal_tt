@@ -40,8 +40,7 @@ class AttributesExtractor
   end
 
   def request_type
-    attr = json.dig('RequestType')
-    attr.downcase if attr
+    json.dig('RequestType')&.downcase
   end
 
   def response_due_date
