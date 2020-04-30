@@ -1,0 +1,43 @@
+<div class="row one-ticket">
+  <div class="col-sm list-column">
+    <p class='attribute'>
+      <span class="title">request number:</span>
+      <span class="value"><%= ticket.request_number %></span>
+    </p>
+    <p class='attribute'>
+      <span class="title">sequence number:</span>
+      <span class="value"><%= ticket.sequence_number %></span>
+    </p>
+    <p class='attribute'>
+      <span class="title">request type:</span>
+      <span class="value"><%= ticket.request_type %></span>
+    </p>
+    <p class='attribute'>
+      <span class="title">response due date:</span>
+      <span class="value"><%= ticket.response_due_date %></span>
+    </p>
+    <p class='attribute'>
+      <span class="title">primary service area:</span>
+      <span class="value"><%= ticket.primary_service_area %></span>
+    </p>
+    <p class='attribute'>
+      <span class="title">additional service area:</span>
+      <span class="value"><%= ticket.additional_service_area.join(', ') %></span>
+    </p>
+    <%= link_to 'Show', ticket_path(ticket), class: 'btn btn-info' %>
+  </div>
+  <div class="col-sm list-column">
+    <p class='attribute'>
+      <span class="title">company name:</span>
+      <span class="value"><%= ticket.excavator.company_name %></span>
+    </p>
+    <p class='attribute'>
+      <span class="title">address:</span>
+      <span class="value"><%= ticket.excavator.address %></span>
+    </p>
+    <p class='attribute'>
+      <span class="title">crew_on_site:</span>
+      <span class="value"><%= ticket.excavator.crew_on_site %></span>
+    </p>
+  </div>
+</div>

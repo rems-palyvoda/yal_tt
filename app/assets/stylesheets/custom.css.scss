@@ -1,1 +1,18 @@
 @import 'bootstrap/dist/css/bootstrap';
+
+.index {
+  padding-top: 20px;
+
+  .one-ticket {
+    border: #0086b3 1px solid;
+    border-radius: 5%;
+    padding: 10px 0 10px 0;
+    margin-bottom: 5px;
+  }
+
+  .list-column {
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
