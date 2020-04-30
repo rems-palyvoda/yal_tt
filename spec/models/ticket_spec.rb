@@ -41,4 +41,19 @@ RSpec.describe Ticket, type: :model do
     it { should_not allow_value(invalid_polygon_1).for(:digsite_info) }
     it { should_not allow_value(invalid_polygon_2).for(:digsite_info) }
   end
+
+  describe '.coordinates' do
+    let(:polygon) { 'POLYGON((-81.13390268058475 32.07206917625161,-81.14660562247929 32.04064386441295))' }
+    let(:ticket) { create(:ticket, digsite_info: polygon) }
+    let(:expected) do
+      [
+        {lat: '-81.13390268058475', long: '32.07206917625161'},
+        {lat: '-81.14660562247929', long: '32.04064386441295'}
+      ]
+    end
+
+    subject { ticket.coordinates }
+
+    it { should eq(expected) }
+  end
 end
