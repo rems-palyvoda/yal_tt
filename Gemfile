@@ -24,6 +24,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'rubocop-rspec'
+  gem 'simplecov', require: false
   gem 'shoulda-matchers'
 end
 
