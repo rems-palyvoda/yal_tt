@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+class PostBodyError < StandardError; end
+
 class AttributesExtractor
   attr_reader :json
 
@@ -30,42 +32,44 @@ class AttributesExtractor
   private
 
   def request_number
-    json['RequestNumber']
+    json.dig('RequestNumber')
   end
 
   def sequence_number
-    json['SequenceNumber']
+    json.dig('SequenceNumber')
   end
 
   def request_type
-    json['RequestType'].downcase
+    attr = json.dig('RequestType')
+    attr.downcase if attr
   end
 
   def response_due_date
-    json['DateTimes']['ResponseDueDateTime']
+    json.dig('DateTimes', 'ResponseDueDateTime')
   end
 
   def primary_service_area
-    json['ServiceArea']['PrimaryServiceAreaCode']['SACode']
+    json.dig('ServiceArea', 'PrimaryServiceAreaCode', 'SACode')
   end
 
   def additional_service_area
-    json['ServiceArea']['AdditionalServiceAreaCodes']['SACode']
+    json.dig('ServiceArea', 'AdditionalServiceAreaCodes', 'SACode')
   end
 
   def digsite_info
-    json['ExcavationInfo']['DigsiteInfo']['WellKnownText']
+    json.dig('ExcavationInfo', 'DigsiteInfo', 'WellKnownText')
   end
 
   def company_name
-    json['Excavator']['CompanyName']
+    json.dig('Excavator', 'CompanyName')
   end
 
   def address
-    json['Excavator']['Address']
+    json.dig('Excavator', 'Address')
   end
 
   def crew_on_site
-    ActiveModel::Type::Boolean.new.cast(json['Excavator']['CrewOnsite'])
+    attr = json.dig('Excavator', 'CrewOnsite')
+    ActiveModel::Type::Boolean.new.cast(attr)
   end
 end
