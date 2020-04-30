@@ -12,5 +12,6 @@ class Ticket < ApplicationRecord
                                    format: { with: /\A[a-zA-Z0-9]+\z/, message: 'Only letters and numbers.' }
   validates :additional_service_area, presence: true
   validates :request_type, presence: true, inclusion: %w[normal]
-  validates :digsite_info, presence: true
+  validates :digsite_info, presence: true,
+                           format: { with: /\APOLYGON\(\((-?\d{2}\.\d* -?\d{2}.\d*,?)*\)\)\z/, message: 'Wrong polygon format.' }
 end

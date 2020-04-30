@@ -14,6 +14,10 @@ RSpec.describe Ticket, type: :model do
   end
 
   describe 'validations' do
+    let(:valid_polygon) { 'POLYGON((-81.13390268058475 32.07206917625161,-81.14660562247929 32.04064386441295))' }
+    let(:invalid_polygon_1) { 'POLYGON((-81.13390268058475 32.07206917625161,-81.14660562247929))' }
+    let(:invalid_polygon_2) { 'POLYGON((abc, abd))' }
+
     subject { create(:ticket) }
 
     it { should validate_presence_of(:request_number) }
@@ -32,5 +36,9 @@ RSpec.describe Ticket, type: :model do
     it { should validate_presence_of(:request_type) }
 
     it { should validate_presence_of(:digsite_info) }
+    it { should allow_value(valid_polygon).for(:digsite_info) }
+    it { should_not allow_value('foo!!').for(:digsite_info) }
+    it { should_not allow_value(invalid_polygon_1).for(:digsite_info) }
+    it { should_not allow_value(invalid_polygon_2).for(:digsite_info) }
   end
 end
