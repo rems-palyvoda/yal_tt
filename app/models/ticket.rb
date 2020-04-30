@@ -13,5 +13,6 @@ class Ticket < ApplicationRecord
   validates :additional_service_area, presence: true
   validates :request_type, presence: true, inclusion: %w[normal]
   validates :digsite_info, presence: true,
-                           format: { with: /\APOLYGON\(\((-?\d{2}\.\d* -?\d{2}.\d*,?)*\)\)\z/, message: 'Wrong polygon format.' }
+                           format: { with: /\APOLYGON\(\((-?\d{2}\.\d* -?\d{2}.\d*,?)*\)\)\z/,
+                                     message: 'Wrong polygon format.' }
 end
