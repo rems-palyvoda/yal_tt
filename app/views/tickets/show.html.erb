@@ -1,22 +1,31 @@
 <div class="show">
+  <span id="polygon", style="display: none"><%= @ticket.digsite_info %></span>
   <div id="map"></div>
 </div>
 
 <script>
+  function coordinates() {
+    const polygon = document.getElementById('polygon').textContent
+    const pattern = /(-?\d{2}\.\d* -?\d{2}.\d*)/g
+    const pairs = polygon.match(pattern)
+
+    const coordinates = pairs.map( pair => {
+      const [lat, long] = pair.split(' ')
+      return {lat: parseFloat(lat), lng: parseFloat(long)}
+    })
+
+    return coordinates
+  }
+
   function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
+    const coords = coordinates()
+
+    const map = new google.maps.Map(document.getElementById('map'), {
       zoom: 6,
-      center: {lat: -33.872, lng: 151.252},
-    });
+      center: coords[0],
+    })
 
-    var outerCoords = [
-      {lat: -32.364, lng: 153.207},
-      {lat: -35.364, lng: 153.207},
-      {lat: -35.364, lng: 158.207},
-      {lat: -32.364, lng: 158.207}
-    ];
-
-    map.data.add({geometry: new google.maps.Data.Polygon([outerCoords])})
+    map.data.add({geometry: new google.maps.Data.Polygon([coords])})
   }
 </script>
 
