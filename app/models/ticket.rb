@@ -16,11 +16,4 @@ class Ticket < ApplicationRecord
                            format: { with: /\APOLYGON\(\((-?\d{2}\.\d* -?\d{2}.\d*,?)*\)\)\z/,
                                      message: 'Wrong polygon format.' }
 
-  def coordinates
-    pattern = /(-?\d{2}\.\d* -?\d{2}.\d*)/
-    pairs = digsite_info.scan(pattern).map { |pair| pair.first.split(' ') }
-    pairs.map do |pair|
-      { lat: pair[0], long: pair[1] }
-    end
-  end
 end
