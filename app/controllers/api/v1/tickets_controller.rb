@@ -13,7 +13,6 @@ module Api
 
       def save_records
         @ticket.save
-        @excavator.save
 
         render json: {
           ticket: JSON(@ticket.to_json),

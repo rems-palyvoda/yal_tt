@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-class PostBodyError < StandardError; end
-
 class AttributesExtractor
   attr_reader :json
 
